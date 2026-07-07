@@ -49,6 +49,11 @@ digstore collection list        # groups by creator DID; shows launcher IDs
 
 Either way, you'll pass the launcher ID to `collection mint` later as `--did <launcher-id>`.
 
+> Wallets like Sage display DIDs as `did:chia:1...` (bech32m). Convert to the 64-hex launcher ID with:
+> ```bash
+> python3 did_to_hex.py did:chia:1r00z5mn...
+> ```
+
 ### Step 3 — Create the Collection Definition
 
 `collection create` takes flags (not prompts) and writes a collection definition JSON used in the mint step. The `--id` flag sets a local slug; `--royalty` is in basis points (300 = 3%).
