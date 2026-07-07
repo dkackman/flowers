@@ -56,7 +56,7 @@ Either way, you'll pass the launcher ID to `collection mint` later as `--did <la
 ```bash
 digstore collection create \
   --name "Dig Flowers" \
-  --id dig-flowers \
+  --id <a GUID> \
   --royalty 300 \
   --royalty-address <xch1...your-address> \
   -o collection.json
@@ -75,7 +75,7 @@ This writes `collection.json`. Open it and add `description` and `twitter` to th
 
 ### Step 4 — Build the Items Manifest
 
-Because theya re easier to work with than JSON, we have our NFT metadata in a CSV file. `generate_manifest.py` reads `assets/flowers.csv` and produces `manifest.json` — an array of all items in the shape `collection mint` expects.
+Because they are easier to work with than JSON, we have our NFT metadata in a CSV file. `generate_manifest.py` reads `assets/flowers.csv` and produces `manifest.json` — an array of all items in the shape `collection mint` expects.
 
 ```bash
 python3 generate_manifest.py
