@@ -14,6 +14,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -161,6 +162,42 @@ def run_stage(
 
     partial_path.write_text(json.dumps(items, indent=2))
     return total
+
+
+def normalize_hex(value: str, label: str) -> str:
+    """Lowercase and validate a 64-hex id, SystemExit(1) if invalid."""
+    v = value.strip().lower()
+    if not re.fullmatch(r"[0-9a-f]{64}", v):
+        print(f"Error: --{label} must be 64 hex characters, got: {value}", file=sys.stderr)
+        raise SystemExit(1)
+    return v
+
+
+def run_finalize(partial_path, store_id, root_hash, out_path) -> int:
+    """Read partial manifest and write items.json with dig:// URNs.
+
+    Reads the partial array, writes out_path (items.json) with media.data_uris/metadata_uris
+    as dig://<store_id>:<root_hash>/<resource> and the two hashes. Returns item count.
+    """
+    sid = normalize_hex(store_id, "store-id")
+    root = normalize_hex(root_hash, "root-hash")
+    partial = json.loads(Path(partial_path).read_text())
+
+    items = []
+    for p in partial:
+        item = {"name": p["name"], "attributes": p["attributes"]}
+        if p.get("description"):
+            item["description"] = p["description"]
+        item["media"] = {
+            "data_uris": [f"dig://{sid}:{root}/{p['art_resource']}"],
+            "data_hash": p["data_hash"],
+            "metadata_uris": [f"dig://{sid}:{root}/{p['metadata_resource']}"],
+            "metadata_hash": p["metadata_hash"],
+        }
+        items.append(item)
+
+    Path(out_path).write_text(json.dumps(items, indent=2))
+    return len(items)
 
 
 def parse_args():

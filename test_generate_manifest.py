@@ -154,5 +154,49 @@ class StageTests(unittest.TestCase):
             self._run()
 
 
+class FinalizeTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.partial = self.tmp / "manifest.partial.json"
+        self.partial.write_text(json.dumps([
+            {
+                "name": "Cosmos #1",
+                "attributes": [{"trait_type": "Color", "value": "pink"}],
+                "art_resource": "001.jpeg",
+                "metadata_resource": "001.json",
+                "data_hash": "aa" * 32,
+                "metadata_hash": "bb" * 32,
+            }
+        ]))
+        self.out = self.tmp / "items.json"
+        self.sid = "11" * 32
+        self.root = "22" * 32
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_finalize_builds_dig_urns_and_shape(self):
+        count = gm.run_finalize(self.partial, self.sid, self.root, self.out)
+        self.assertEqual(count, 1)
+        item = json.loads(self.out.read_text())[0]
+        self.assertEqual(item["name"], "Cosmos #1")
+        media = item["media"]
+        self.assertEqual(media["data_uris"], [f"dig://{self.sid}:{self.root}/001.jpeg"])
+        self.assertEqual(media["metadata_uris"], [f"dig://{self.sid}:{self.root}/001.json"])
+        self.assertEqual(media["data_hash"], "aa" * 32)
+        self.assertEqual(media["metadata_hash"], "bb" * 32)
+        # Internal staging keys must not leak into the mint manifest.
+        self.assertNotIn("art_resource", item)
+
+    def test_bad_store_id_is_rejected(self):
+        with self.assertRaises(SystemExit):
+            gm.run_finalize(self.partial, "nothex", self.root, self.out)
+
+    def test_uppercase_hex_is_normalized(self):
+        gm.run_finalize(self.partial, ("AB" * 32), self.root, self.out)
+        item = json.loads(self.out.read_text())[0]
+        self.assertIn(f"dig://{'ab' * 32}:", item["media"]["data_uris"][0])
+
+
 if __name__ == "__main__":
     unittest.main()
