@@ -14,6 +14,7 @@ import argparse
 import csv
 import hashlib
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -74,6 +75,92 @@ def row_to_attributes(row: dict, skip_cols: set, empty_values: set) -> list:
 def item_name(row: dict, name_col: str, series_number: int) -> str:
     """Human-readable NFT name, suffixed with its 1-based series position."""
     return f"{row[name_col]} #{series_number}"
+
+
+def run_stage(
+    csv_path,
+    assets_dir,
+    collection_path,
+    capsule_dir,
+    partial_path,
+    name_col,
+    file_col,
+    description,
+    skip_cols,
+    empty_values,
+) -> int:
+    """Stage assets and metadata into a capsule directory and partial manifest.
+
+    Reads CSV, asset images, and collection metadata. Writes indexed resources
+    to capsule_dir (NNN.<ext> images + NNN.json metadata) and a partial manifest
+    JSON array to partial_path. Returns the count of items processed.
+    """
+    csv_path = Path(csv_path)
+    assets_dir = Path(assets_dir)
+    capsule_dir = Path(capsule_dir)
+    partial_path = Path(partial_path)
+
+    if not csv_path.exists():
+        print(f"Error: {csv_path} not found", file=sys.stderr)
+        raise SystemExit(1)
+
+    collection = json.loads(Path(collection_path).read_text())
+    col_ref = {"id": collection["id"], "name": collection["name"]}
+
+    if capsule_dir.exists() and any(capsule_dir.iterdir()):
+        print(
+            f"Error: capsule dir {capsule_dir} exists and is not empty; "
+            f"remove it before re-staging",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
+    capsule_dir.mkdir(parents=True, exist_ok=True)
+
+    with csv_path.open(newline="") as f:
+        rows = list(csv.DictReader(f))
+    total = len(rows)
+    items = []
+    for i, row in enumerate(rows):
+        n = i + 1
+        src = assets_dir / row[file_col]
+        if not src.exists():
+            print(f"Error: asset not found — {src}", file=sys.stderr)
+            raise SystemExit(1)
+
+        art_resource = f"{n:03d}{src.suffix}"
+        metadata_resource = f"{n:03d}.json"
+        attributes = row_to_attributes(row, skip_cols, empty_values)
+
+        canonical = build_metadata_doc(
+            item_name(row, name_col, n),
+            description=description or None,
+            collection=col_ref,
+            attributes=attributes,
+            series_number=n,
+            series_total=total,
+            minting_tool="DIG",
+        )
+        metadata_bytes = canonical.encode("utf-8")
+        image_bytes = src.read_bytes()
+
+        shutil.copyfile(src, capsule_dir / art_resource)
+        (capsule_dir / metadata_resource).write_bytes(metadata_bytes)
+
+        item = {"name": item_name(row, name_col, n), "attributes": attributes}
+        if description:
+            item["description"] = description
+        item.update(
+            {
+                "art_resource": art_resource,
+                "metadata_resource": metadata_resource,
+                "data_hash": sha256_hex(image_bytes),
+                "metadata_hash": sha256_hex(metadata_bytes),
+            }
+        )
+        items.append(item)
+
+    partial_path.write_text(json.dumps(items, indent=2))
+    return total
 
 
 def parse_args():

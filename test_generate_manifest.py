@@ -1,5 +1,8 @@
 import json
+import shutil
+import tempfile
 import unittest
+from pathlib import Path
 
 import generate_manifest as gm
 
@@ -81,6 +84,74 @@ class RowMappingTests(unittest.TestCase):
 
     def test_item_name_appends_series_number(self):
         self.assertEqual(gm.item_name(self.row, "Flower", 7), "New England Aster #7")
+
+
+class StageTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.assets = self.tmp / "assets"
+        self.assets.mkdir()
+        (self.assets / "a.jpeg").write_bytes(b"IMG-A-BYTES")
+        (self.assets / "b.jpeg").write_bytes(b"IMG-B-BYTES")
+        (self.tmp / "flowers.csv").write_text(
+            "Name,Filename,Flower,Color,Insect,InsectType\n"
+            "n1,a.jpeg,Cosmos,pink,None,\n"
+            "n2,b.jpeg,Peony,red,bee,bumblebee\n"
+        )
+        (self.tmp / "collection.json").write_text(
+            json.dumps({"id": "flowers", "name": "Flowers"})
+        )
+        self.capsule = self.tmp / "capsule"
+        self.partial = self.tmp / "manifest.partial.json"
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _run(self):
+        return gm.run_stage(
+            csv_path=self.tmp / "flowers.csv",
+            assets_dir=self.assets,
+            collection_path=self.tmp / "collection.json",
+            capsule_dir=self.capsule,
+            partial_path=self.partial,
+            name_col="Flower",
+            file_col="Filename",
+            description="",
+            skip_cols={"Name", "Flower", "Filename"},
+            empty_values={""},
+        )
+
+    def test_stage_writes_capsule_and_partial(self):
+        count = self._run()
+        self.assertEqual(count, 2)
+        # Indexed resources exist.
+        self.assertTrue((self.capsule / "001.jpeg").exists())
+        self.assertTrue((self.capsule / "001.json").exists())
+        self.assertTrue((self.capsule / "002.jpeg").exists())
+        items = json.loads(self.partial.read_text())
+        self.assertEqual([i["name"] for i in items], ["Cosmos #1", "Peony #2"])
+        self.assertEqual(items[0]["art_resource"], "001.jpeg")
+        self.assertEqual(items[0]["metadata_resource"], "001.json")
+
+    def test_metadata_hash_matches_written_bytes(self):
+        self._run()
+        items = json.loads(self.partial.read_text())
+        written = (self.capsule / "001.json").read_bytes()
+        self.assertEqual(items[0]["metadata_hash"], gm.sha256_hex(written))
+        self.assertEqual(items[0]["data_hash"], gm.sha256_hex(b"IMG-A-BYTES"))
+
+    def test_insect_none_kept_as_trait(self):
+        self._run()
+        items = json.loads(self.partial.read_text())
+        traits = {a["trait_type"]: a["value"] for a in items[0]["attributes"]}
+        self.assertEqual(traits.get("Insect"), "None")
+        self.assertNotIn("InsectType", traits)
+
+    def test_existing_nonempty_capsule_is_refused(self):
+        self.capsule.mkdir()
+        (self.capsule / "stale.txt").write_text("x")
+        with self.assertRaises(SystemExit):
+            self._run()
 
 
 if __name__ == "__main__":
