@@ -35,7 +35,7 @@ between the two phases — never shelled out by the script.
 
 ## Commands
 
-```
+```bash
 python generate_manifest.py stage    --collection collection.json
 python generate_manifest.py finalize --store-id <hex> --root-hash <hex>
 ```
@@ -69,8 +69,9 @@ Output: `items.json` — the final mint manifest `collection mint --manifest` co
 - **name**: `"<Flower> #<n>"` where `n` is the 1-based series position (e.g. `"Cosmos #7"`).
   Guarantees unique names even though `Flower` repeats (Cosmos, Peony appear twice).
 - **attributes**: every CSV column except `Name`, `Flower`, `Filename`; value must be non-empty
-  and not in `--empty-values` (default `{"", "None"}`, so no-insect items get no insect traits).
-  Item attributes use `trait_type`/`value` (CHIP-0007 item shape).
+  and not in `--empty-values` (default `{""}` — only truly empty cells are dropped, so a
+  no-insect item keeps its explicit `Insect: None` trait while its empty `InsectType` is
+  omitted). Item attributes use `trait_type`/`value` (CHIP-0007 item shape).
 - **description**: optional fixed string via a flag; omitted if empty.
 - **URIs**: `dig://` primary only (no https gateway fallback).
 
