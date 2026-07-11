@@ -62,6 +62,20 @@ def build_metadata_doc(
     return json.dumps(doc, separators=(",", ":"), ensure_ascii=False)
 
 
+def row_to_attributes(row: dict, skip_cols: set, empty_values: set) -> list:
+    """Every non-skipped column becomes a trait, dropping empty-valued cells."""
+    return [
+        {"trait_type": col, "value": val}
+        for col, val in row.items()
+        if col not in skip_cols and val is not None and val.strip() not in empty_values
+    ]
+
+
+def item_name(row: dict, name_col: str, series_number: int) -> str:
+    """Human-readable NFT name, suffixed with its 1-based series position."""
+    return f"{row[name_col]} #{series_number}"
+
+
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--csv",      default="./flowers.csv",  help="Path to input CSV (default: ./flowers.csv)")
@@ -73,27 +87,6 @@ def parse_args():
     p.add_argument("--skip",     action="append", default=["Name"], metavar="COL",
                                                              help="Column to exclude from attributes; repeatable (default: Name)")
     return p.parse_args()
-
-
-def row_to_item(row: dict, name_col: str, file_col: str, assets_dir: Path, description: str, skip_cols: set) -> dict:
-    attributes = [
-        {"trait_type": col, "value": val}
-        for col, val in row.items()
-        if col not in skip_cols and val
-    ]
-
-    item = {
-        "name": row[name_col],
-        "attributes": attributes,
-        "media": {
-            "data_uris": [str(assets_dir / row[file_col])],
-        },
-    }
-
-    if description:
-        item["description"] = description
-
-    return item
 
 
 def main():

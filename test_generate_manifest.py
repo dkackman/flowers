@@ -50,5 +50,38 @@ class Sha256Tests(unittest.TestCase):
         self.assertRegex(h, r"^[0-9a-f]{64}$")
 
 
+class RowMappingTests(unittest.TestCase):
+    def setUp(self):
+        self.row = {
+            "Name": "IMG_0033",
+            "Filename": "IMG_0033.jpeg",
+            "Flower": "New England Aster",
+            "Color": "purple",
+            "Insect": "bee",
+            "InsectType": "bumblebee",
+        }
+        self.skip = {"Name", "Flower", "Filename"}
+
+    def test_attributes_keep_order_and_drop_skipped(self):
+        attrs = gm.row_to_attributes(self.row, self.skip, {""})
+        self.assertEqual(
+            attrs,
+            [
+                {"trait_type": "Color", "value": "purple"},
+                {"trait_type": "Insect", "value": "bee"},
+                {"trait_type": "InsectType", "value": "bumblebee"},
+            ],
+        )
+
+    def test_empty_value_dropped_but_none_kept(self):
+        row = dict(self.row, Insect="None", InsectType="")
+        attrs = gm.row_to_attributes(row, self.skip, {""})
+        self.assertIn({"trait_type": "Insect", "value": "None"}, attrs)
+        self.assertNotIn("InsectType", [a["trait_type"] for a in attrs])
+
+    def test_item_name_appends_series_number(self):
+        self.assertEqual(gm.item_name(self.row, "Flower", 7), "New England Aster #7")
+
+
 if __name__ == "__main__":
     unittest.main()
