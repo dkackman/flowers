@@ -12,9 +12,54 @@ Usage:
 
 import argparse
 import csv
+import hashlib
 import json
 import sys
 from pathlib import Path
+
+
+def sha256_hex(data: bytes) -> str:
+    """SHA-256 of bytes as lowercase 64-hex (the on-chain hash encoding)."""
+    return hashlib.sha256(data).hexdigest()
+
+
+def build_metadata_doc(
+    name,
+    *,
+    description=None,
+    collection=None,
+    attributes=None,
+    series_number=None,
+    series_total=None,
+    minting_tool=None,
+    sensitive_content=False,
+) -> str:
+    """Build a CHIP-0007 metadata document as canonical compact JSON.
+
+    Byte-for-byte compatible with digstore/chip35: fixed field order, empty
+    optionals omitted, compact separators. The returned string's UTF-8 bytes are
+    exactly what `metadata_hash` is computed over and what is written to the capsule.
+    """
+    doc = {"format": "CHIP-0007", "name": name}
+    if description is not None:
+        doc["description"] = description
+    if sensitive_content:
+        doc["sensitive_content"] = True
+    if collection is not None:
+        col = {"id": collection["id"], "name": collection["name"]}
+        col_attrs = collection.get("attributes") or []
+        if col_attrs:
+            col["attributes"] = col_attrs
+        doc["collection"] = col
+    if attributes:
+        doc["attributes"] = attributes
+    if series_number is not None:
+        doc["series_number"] = series_number
+    if series_total is not None:
+        doc["series_total"] = series_total
+    if minting_tool is not None:
+        doc["minting_tool"] = minting_tool
+    return json.dumps(doc, separators=(",", ":"), ensure_ascii=False)
 
 
 def parse_args():
