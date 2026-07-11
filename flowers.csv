@@ -1,204 +1,25 @@
 Name,Filename,Flower,Color,Insect,InsectType
-DSC01177,DSC01177.jpeg,Joe Pye Weed,purple,bee,bumblebee
-IMG_0032,IMG_0032.jpeg,Hosta,green,None,
 IMG_0033,IMG_0033.jpeg,New England Aster,purple,bee,bumblebee
-IMG_0034,IMG_0034.jpeg,New England Aster,pink,bee,bumblebee
-IMG_0035,IMG_0035.jpeg,Ligularia,yellow,bee,bumblebee
-IMG_0036,IMG_0036.jpeg,Ligularia,yellow,bee,bumblebee
-IMG_0037,IMG_0037.jpeg,Allium,purple,None,
-IMG_0038,IMG_0038.jpeg,Purple Coneflower,pink,None,
-IMG_0039,IMG_0039.jpeg,Daylily,pink,None,
-IMG_0040,IMG_0040.jpeg,Asiatic Lily,red,None,
-IMG_0041,IMG_0041.jpeg,Asiatic Lily,red,None,
-IMG_1180,IMG_1180.jpeg,Jack-in-the-Pulpit,green,None,
-IMG_1189,IMG_1189.jpeg,Fern Fiddlehead,green,None,
-IMG_1194,IMG_1194.jpeg,Bleeding Heart,pink,None,
-IMG_1242,IMG_1242.jpeg,Virginia Bluebells,blue,None,
-IMG_1254,IMG_1254.jpeg,Bleeding Heart,pink,None,
-IMG_4634,IMG_4634.jpeg,Winter Aconite,yellow,None,
-IMG_4641,IMG_4641.jpeg,Crocus,purple,None,
 IMG_4712,IMG_4712.jpeg,Crocus,purple,None,
-IMG_5252,IMG_5252.jpeg,Culver's Root,white,bee,bumblebee
-IMG_5254,IMG_5254.jpeg,Culver's Root,white,bee,bumblebee
 IMG_6019,IMG_6019.jpeg,Blanket Flower,yellow,None,
-IMG_6036,IMG_6036.jpeg,Columbine,purple,None,
-IMG_6037,IMG_6037.jpeg,Columbine,pink,None,
-IMG_6068,IMG_6068.jpeg,Tulip,yellow,None,
-IMG_6183,IMG_6183.jpeg,New England Aster,purple,bee,bumblebee
-IMG_6186,IMG_6186.jpeg,Cosmos,pink,bee,bumblebee
-IMG_6633,IMG_6633.jpeg,Wild Tulip,white,None,
-IMG_6668,IMG_6668.jpeg,Allium,purple,None,
-IMG_6678,IMG_6678.jpeg,Chive,purple,None,
-IMG_6705,IMG_6705.jpeg,False Indigo,purple,None,
-IMG_6707,IMG_6707.jpeg,Columbine,purple,None,
-IMG_6717,IMG_6717.jpeg,Oriental Poppy,white,None,
-IMG_6723,IMG_6723.jpeg,Oriental Poppy,red,None,
-IMG_6727,IMG_6727.jpeg,Foxglove,pink,None,
-IMG_6731,IMG_6731.jpeg,False Indigo,purple,bee,bumblebee
 IMG_6733,IMG_6733.jpeg,Peony,pink,None,
-IMG_6737,IMG_6737.jpeg,Peony,red,None,
 IMG_6739,IMG_6739.jpeg,Oriental Poppy,pink,None,
-IMG_6780,IMG_6780.jpeg,Showy Lady's Slipper,pink,None,
-IMG_6826,IMG_6826.jpeg,Showy Lady's Slipper,pink,None,
-IMG_6830,IMG_6830.jpeg,Petunia,purple,None,
 IMG_6861,IMG_6861.jpeg,Hosta,lavender,None,
-"IMG_6863 (1)","IMG_6863 (1).jpeg",California Poppy,yellow,None,
-IMG_6863,IMG_6863.jpeg,California Poppy,yellow,None,
-IMG_6867,IMG_6867.jpeg,Delphinium,blue,None,
-IMG_6868,IMG_6868.jpeg,Foxglove,pink,None,
-IMG_6870,IMG_6870.jpeg,Fireweed,purple,None,
-IMG_6894,IMG_6894.jpeg,None,None,None,
-IMG_6897,IMG_6897.jpeg,Delphinium,blue,bee,bumblebee
-IMG_7015,IMG_7015.jpeg,Bee Balm,pink,bee,bumblebee
-IMG_7038,IMG_7038.jpeg,Hosta,white,bee,bumblebee
-IMG_7055,IMG_7055.jpeg,Purple Coneflower,pink,butterfly,red admiral
-IMG_7059,IMG_7059.jpeg,Purple Coneflower,pink,butterfly,red admiral
-IMG_7103,IMG_7103.jpeg,Purple Coneflower,pink,butterfly,black swallowtail
-IMG_7119,IMG_7119.jpeg,Portulaca,yellow,None,
-IMG_7122,IMG_7122.jpeg,Prairie Coneflower,yellow,None,
-IMG_7148,IMG_7148.jpeg,Blackberry Lily,orange,None,
-IMG_7153,IMG_7153.jpeg,Globe Thistle,blue,None,
-IMG_7159,IMG_7159.jpeg,Purple Coneflower,pink,bee,honeybee
-IMG_7169,IMG_7169.jpeg,Lily,yellow,None,
-IMG_7171,IMG_7171.jpeg,Daylily,orange,None,
-IMG_7175,IMG_7175.jpeg,Purple Coneflower,pink,None,
-"IMG_7178 (1)","IMG_7178 (1).jpeg",Balloon Flower,purple,None,
-IMG_7178,IMG_7178.jpeg,Balloon Flower,purple,None,
-"IMG_7188 (1)","IMG_7188 (1).jpeg",Purple Coneflower,pink,butterfly,monarch
-IMG_7188,IMG_7188.jpeg,Purple Coneflower,pink,butterfly,monarch
-IMG_7200,IMG_7200.jpeg,Joe Pye Weed,pink,bee,
-IMG_7203,IMG_7203.jpeg,Prairie Coneflower,yellow,None,
-IMG_7208,IMG_7208.jpeg,Cosmos,white,bee,
-"IMG_7209 (1)","IMG_7209 (1).jpeg",Cosmos,white,bee,
+IMG_7188 (1),IMG_7188 (1).jpeg,Purple Coneflower,pink,butterfly,monarch
 IMG_7209,IMG_7209.jpeg,Cosmos,white,bee,
-"IMG_7210 (1)","IMG_7210 (1).jpeg",Russian Sage,purple,None,
-IMG_7210,IMG_7210.jpeg,Russian Sage,purple,None,
-IMG_7224,IMG_7224.jpeg,Cosmos,purple,None,
-IMG_7261,IMG_7261.jpeg,Zinnia,orange,None,
-IMG_7263,IMG_7263.jpeg,Zinnia,pink,None,
-IMG_7267,IMG_7267.jpeg,Ligularia,yellow,bee,bumblebee
-IMG_7271,IMG_7271.jpeg,Solomon's Seal,white,None,
-IMG_7272,IMG_7272.jpeg,Hydrangea,pink,None,
-IMG_7353,IMG_7353.jpeg,Cosmos,pink,None,
-IMG_7356,IMG_7356.jpeg,Ligularia,yellow,None,
-IMG_7357,IMG_7357.jpeg,Ligularia,yellow,None,
+IMG_7210 (1),IMG_7210 (1).jpeg,Russian Sage,purple,None,
 IMG_7360,IMG_7360.jpeg,Zinnia,orange,None,
-IMG_7361,IMG_7361.jpeg,Rose,red,None,
-IMG_7363,IMG_7363.jpeg,Rose,red,None,
-IMG_7364,IMG_7364.jpeg,Hydrangea,pink,None,
-IMG_7365,IMG_7365.jpeg,Hydrangea,white,None,
-"IMG_7370 (1)","IMG_7370 (1).jpeg",Russian Sage,purple,bee,bumblebee
-IMG_7370,IMG_7370.jpeg,Russian Sage,purple,bee,bumblebee
-IMG_7393,IMG_7393.jpeg,Zinnia,orange,None,
-IMG_7402,IMG_7402.jpeg,Pampas Grass,white,None,
-IMG_7411,IMG_7411.jpeg,Cosmos,purple,bee,bumblebee
-IMG_7413,IMG_7413.jpeg,Switchgrass,tan,None,
-IMG_7414,IMG_7414.jpeg,Maiden Grass,white,None,
-"IMG_7424 (1)","IMG_7424 (1).jpeg",New England Aster,purple,bee,bumblebee
-IMG_7424,IMG_7424.jpeg,New England Aster,purple,bee,bumblebee
-"IMG_7431 (1)","IMG_7431 (1).jpeg",Cosmos,white,bee,bumblebee
-IMG_7431,IMG_7431.jpeg,Cosmos,white,bee,bumblebee
+IMG_7431 (1),IMG_7431 (1).jpeg,Cosmos,white,bee,bumblebee
 IMG_7436,IMG_7436.jpeg,Cosmos,pink,butterfly,monarch
-IMG_7437,IMG_7437.jpeg,Cosmos,pink,butterfly,monarch
-IMG_7438,IMG_7438.jpeg,Cosmos,pink,butterfly,monarch
-IMG_7467,IMG_7467.jpeg,Staghorn Sumac,orange,None,
-IMG_7512,IMG_7512.jpeg,Maiden Grass,white,None,
 IMG_7513,IMG_7513.jpeg,Maiden Grass,white,None,
-IMG_7724,IMG_7724.jpeg,Crocus,purple,None,
-IMG_7725,IMG_7725.jpeg,Crocus,purple,None,
-IMG_7726,IMG_7726.jpeg,Glory-of-the-Snow,blue,None,
-IMG_7737,IMG_7737.jpeg,Hyacinth,purple,None,
-IMG_7748,IMG_7748.jpeg,Daffodil,yellow,None,
-IMG_7760,IMG_7760.jpeg,Species Tulip,yellow,None,
-IMG_7762,IMG_7762.jpeg,Tulip,red,None,
-IMG_7783,IMG_7783.jpeg,Tulip,red,None,
-IMG_7787,IMG_7787.jpeg,Virginia Bluebells,blue,None,
-IMG_7795,IMG_7795.jpeg,Species Tulip,pink,None,
 IMG_7801,IMG_7801.jpeg,Crabapple,white,None,
-IMG_7802,IMG_7802.jpeg,Crabapple,white,None,
 IMG_7804,IMG_7804.jpeg,Camassia,blue,None,
-IMG_7815,IMG_7815.jpeg,Allium,purple,None,
-IMG_7817,IMG_7817.jpeg,Virginia Bluebells,blue,None,
 IMG_7819,IMG_7819.jpeg,Allium,purple,None,
-IMG_7820,IMG_7820.jpeg,Ornamental Allium,purple,None,
-IMG_7822,IMG_7822.jpeg,Jack-in-the-Pulpit,green,None,
 IMG_7839,IMG_7839.jpeg,Columbine,pink,None,
-IMG_7842,IMG_7842.jpeg,Columbine,purple,None,
-IMG_7845,IMG_7845.jpeg,Columbine,purple,None,
-IMG_7847,IMG_7847.jpeg,Columbine,pink,None,
-IMG_7848,IMG_7848.jpeg,Columbine,pink,None,
-IMG_7861,IMG_7861.jpeg,Oriental Poppy,orange,None,
-IMG_7870,IMG_7870.jpeg,Bearded Iris,yellow,None,
-IMG_7871,IMG_7871.jpeg,Bearded Iris,yellow,None,
-IMG_7878,IMG_7878.jpeg,Peony,pink,None,
-"IMG_7882 (1)","IMG_7882 (1).jpeg",Peony,pink,None,
-IMG_7882,IMG_7882.jpeg,Peony,pink,None,
-IMG_7883,IMG_7883.jpeg,Peony,pink,None,
-IMG_7899,IMG_7899.jpeg,Oriental Poppy,pink,None,
 IMG_7900,IMG_7900.jpeg,Foxglove,purple,None,
-IMG_7902,IMG_7902.jpeg,Foxglove,purple,None,
-IMG_7903,IMG_7903.jpeg,Peony,pink,None,
-IMG_7904,IMG_7904.jpeg,Peony,pink,None,
 IMG_7907,IMG_7907.jpeg,Peony,pink,None,
-IMG_7908,IMG_7908.jpeg,Rose,red,None,
-IMG_7911,IMG_7911.jpeg,Rose,red,None,
-IMG_7919,IMG_7919.jpeg,Pink Lady's Slipper,pink,None,
-IMG_7920,IMG_7920.jpeg,Pink Lady's Slipper,pink,None,
-IMG_7925,IMG_7925.jpeg,Penstemon,white,None,
 IMG_7940,IMG_7940.jpeg,Poppy,red,None,
-"IMG_7957 (1)","IMG_7957 (1).jpeg",Evening Primrose,yellow,bee,sweat bee
-IMG_7957,IMG_7957.jpeg,Evening Primrose,yellow,bee,sweat bee
-IMG_7984,IMG_7984.jpeg,Lily,orange,None,
-IMG_7985,IMG_7985.jpeg,Rose,red,None,
-IMG_7989,IMG_7989.jpeg,Lily,yellow,None,
-IMG_7990,IMG_7990.jpeg,Lily,white,None,
-IMG_8003,IMG_8003.jpeg,Hydrangea,pink,None,
-IMG_8006,IMG_8006.jpeg,Swamp Milkweed,pink,None,
-IMG_8007,IMG_8007.jpeg,Blackberry Lily,orange,None,
 IMG_8127,IMG_8127.jpeg,Coneflower,yellow,bee,bumblebee
-IMG_8132,IMG_8132.jpeg,Coneflower,yellow,bee,bumblebee
-IMG_8396,IMG_8396.jpeg,Grape Hyacinth,blue,None,
-IMG_8448,IMG_8448.jpeg,Tulip,yellow,None,
-IMG_8449,IMG_8449.jpeg,Pasque Flower,purple,None,
-IMG_8453,IMG_8453.jpeg,Aster,purple,bee,bumblebee
-IMG_8464,IMG_8464.jpeg,Fern,green,None,
-"IMG_8482 (1)","IMG_8482 (1).jpeg",Columbine,purple,None,
-IMG_8482,IMG_8482.jpeg,Columbine,purple,None,
-IMG_8531,IMG_8531.jpeg,Peony,pink,None,
-IMG_8534,IMG_8534.jpeg,Peony,pink,None,
-IMG_8536,IMG_8536.jpeg,Peony,white,None,
-IMG_8537,IMG_8537.jpeg,Poppy,orange,None,
-IMG_8568,IMG_8568.jpeg,False Indigo,purple,bee,bumblebee
-IMG_8574,IMG_8574.jpeg,Peony,pink,None,
-"IMG_8599 (1)","IMG_8599 (1).jpeg",Baby Blue Eyes,blue,None,
-IMG_8599,IMG_8599.jpeg,Baby Blue Eyes,blue,None,
-IMG_8708,IMG_8708.jpeg,Delphinium,purple,None,
-IMG_8754,IMG_8754.jpeg,Hosta,white,bee,
-IMG_8755,IMG_8755.jpeg,Oriental Lily,pink,None,
-IMG_8761,IMG_8761.jpeg,Bee Balm,purple,bee,bumblebee
-IMG_8792,IMG_8792.jpeg,Tiger Lily,pink,None,
-IMG_8803,IMG_8803.jpeg,Asiatic Lily,yellow,None,
-IMG_8826,IMG_8826.jpeg,Zinnia,orange,butterfly,monarch
-"IMG_8830 (1)","IMG_8830 (1).jpeg",Wild Sunflower,yellow,bee,bumblebee
-IMG_8830,IMG_8830.jpeg,Wild Sunflower,yellow,bee,bumblebee
-IMG_9053,IMG_9053.jpeg,Cutleaf Coneflower,yellow,bee,bumblebee
-IMG_9125,IMG_9125.jpeg,New England Aster,purple,bee,bumblebee
-"IMG_9140 (1)","IMG_9140 (1).jpeg",Sunflower,yellow,bee,bumblebee
-IMG_9140,IMG_9140.jpeg,Sunflower,yellow,bee,bumblebee
-IMG_9171,IMG_9171.jpeg,Morning Glory,blue,None,
-IMG_9181,IMG_9181.jpeg,Morning Glory,blue,bee,bumblebee
-IMG_9262,IMG_9262.jpeg,Maiden Grass,white,None,
-IMG_9273,IMG_9273.jpeg,Marigold,orange,None,
-IMG_9583,IMG_9583.jpeg,Daffodil,yellow,None,
-IMG_9668,IMG_9668.jpeg,Blue Flax,blue,None,
-IMG_9743,IMG_9743.jpeg,Meadow Rue,white,None,
-"IMG_9929 (1)","IMG_9929 (1).jpeg",Sundrops,yellow,bee,sweat bee
-IMG_9929,IMG_9929.jpeg,Sundrops,yellow,bee,sweat bee
-"WP_20140927_17_07_37_Pro (2)","WP_20140927_17_07_37_Pro (2).jpeg",Salvia,purple,bee,bumblebee
-WP_20150412_11_45_36_Pro,WP_20150412_11_45_36_Pro.jpeg,Crocus,purple,None,
-"WP_20150711_12_38_27_Pro__highres (2)","WP_20150711_12_38_27_Pro__highres (2).jpeg",Bachelor's Button,blue,bee,bumblebee
-"WP_20150712_10_55_37_Pro__highres (2)","WP_20150712_10_55_37_Pro__highres (2).jpeg",Blazing Star,purple,None,
-WP_20150725_10_38_15_Pro,WP_20150725_10_38_15_Pro.jpeg,California Poppy,yellow,None,
+IMG_9929 (1),IMG_9929 (1).jpeg,Sundrops,yellow,bee,sweat bee
 WP_20150911_17_40_47_Pro,WP_20150911_17_40_47_Pro.jpeg,Dahlia,pink,None,
-WP_20150920_10_58_33_Pro,WP_20150920_10_58_33_Pro.jpeg,Dahlia,purple,bee,bumblebee
 WP_20160723_09_41_46_Pro,WP_20160723_09_41_46_Pro.jpeg,Swamp Milkweed,pink,None,
