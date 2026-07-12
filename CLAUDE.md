@@ -21,7 +21,7 @@ Some images have duplicates with ` (1)` or ` (2)` suffixes — same bytes, treat
 - **Store** — on-chain Chia singleton with a 64-hex store ID; holds content history as a sequence of commits
 - **Capsule** — immutable `(storeId, rootHash)` pair; the atomic unit of content on DIG
 - **Generation** — one committed state of a store (append-only, like a Git commit)
-- **URN** — `urn:dig:chia:<storeId>[:<rootHash>][/<resource>]` — content address and decryption key combined
+- **URN** — `urn:dig:chia:<storeId>[:<rootHash>][/<resource>]` — content address and decryption key combined (the on-chain mint manifest / capsule addresses use the equivalent `dig://<storeId>:<rootHash>/<resource>` representation)
 - **dig.toml** — project manifest (safe to commit; contains no secrets)
 - On-chain operations (`init`, `commit`) spend real XCH + $DIG tokens; local operations are free
 

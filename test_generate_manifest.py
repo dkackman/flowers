@@ -153,6 +153,20 @@ class StageTests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             self._run()
 
+    def test_missing_name_or_file_column_is_rejected(self):
+        (self.tmp / "flowers.csv").write_text(
+            "Name,Color,Insect,InsectType\n"
+            "n1,pink,None,\n"
+            "n2,red,bee,bumblebee\n"
+        )
+        with self.assertRaises(SystemExit):
+            self._run()
+
+    def test_missing_collection_keys_is_rejected(self):
+        (self.tmp / "collection.json").write_text(json.dumps({"id": "flowers"}))
+        with self.assertRaises(SystemExit):
+            self._run()
+
 
 class FinalizeTests(unittest.TestCase):
     def setUp(self):
@@ -196,6 +210,20 @@ class FinalizeTests(unittest.TestCase):
         gm.run_finalize(self.partial, ("AB" * 32), self.root, self.out)
         item = json.loads(self.out.read_text())[0]
         self.assertIn(f"dig://{'ab' * 32}:", item["media"]["data_uris"][0])
+
+    def test_partial_item_missing_key_is_rejected(self):
+        self.partial.write_text(json.dumps([
+            {
+                "name": "Cosmos #1",
+                "attributes": [{"trait_type": "Color", "value": "pink"}],
+                "art_resource": "001.jpeg",
+                "metadata_resource": "001.json",
+                "data_hash": "aa" * 32,
+                # metadata_hash intentionally missing
+            }
+        ]))
+        with self.assertRaises(SystemExit):
+            gm.run_finalize(self.partial, self.sid, self.root, self.out)
 
 
 class RoundTripTests(unittest.TestCase):

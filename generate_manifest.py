@@ -105,6 +105,14 @@ def run_stage(
         raise SystemExit(1)
 
     collection = json.loads(Path(collection_path).read_text())
+    missing_collection_keys = [k for k in ("id", "name") if k not in collection]
+    if missing_collection_keys:
+        print(
+            f"Error: collection file {collection_path} is missing required key(s): "
+            f"{', '.join(missing_collection_keys)}",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
     col_ref = {"id": collection["id"], "name": collection["name"]}
 
     if capsule_dir.exists() and any(capsule_dir.iterdir()):
@@ -117,7 +125,16 @@ def run_stage(
     capsule_dir.mkdir(parents=True, exist_ok=True)
 
     with csv_path.open(newline="") as f:
-        rows = list(csv.DictReader(f))
+        reader = csv.DictReader(f)
+        headers = reader.fieldnames or []
+        rows = list(reader)
+
+    missing_cols = [c for c in (name_col, file_col) if c not in headers]
+    if missing_cols:
+        print(f"Error: column(s) not found in CSV: {', '.join(missing_cols)}", file=sys.stderr)
+        print(f"Available columns: {', '.join(headers)}", file=sys.stderr)
+        raise SystemExit(1)
+
     total = len(rows)
     items = []
     for i, row in enumerate(rows):
@@ -130,9 +147,10 @@ def run_stage(
         art_resource = f"{n:03d}{src.suffix}"
         metadata_resource = f"{n:03d}.json"
         attributes = row_to_attributes(row, skip_cols, empty_values)
+        name = item_name(row, name_col, n)
 
         canonical = build_metadata_doc(
-            item_name(row, name_col, n),
+            name,
             description=description or None,
             collection=col_ref,
             attributes=attributes,
@@ -146,7 +164,7 @@ def run_stage(
         shutil.copyfile(src, capsule_dir / art_resource)
         (capsule_dir / metadata_resource).write_bytes(metadata_bytes)
 
-        item = {"name": item_name(row, name_col, n), "attributes": attributes}
+        item = {"name": name, "attributes": attributes}
         if description:
             item["description"] = description
         item.update(
@@ -182,8 +200,25 @@ def run_finalize(partial_path, store_id, root_hash, out_path) -> int:
     root = normalize_hex(root_hash, "root-hash")
     partial = json.loads(Path(partial_path).read_text())
 
+    required_keys = (
+        "name",
+        "attributes",
+        "art_resource",
+        "metadata_resource",
+        "data_hash",
+        "metadata_hash",
+    )
     items = []
-    for p in partial:
+    for idx, p in enumerate(partial):
+        missing_item_keys = [k for k in required_keys if k not in p]
+        if missing_item_keys:
+            print(
+                f"Error: partial manifest item {idx} is missing key(s): "
+                f"{', '.join(missing_item_keys)}",
+                file=sys.stderr,
+            )
+            raise SystemExit(1)
+
         item = {"name": p["name"], "attributes": p["attributes"]}
         if p.get("description"):
             item["description"] = p["description"]
