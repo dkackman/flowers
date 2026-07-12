@@ -198,5 +198,52 @@ class FinalizeTests(unittest.TestCase):
         self.assertIn(f"dig://{'ab' * 32}:", item["media"]["data_uris"][0])
 
 
+class RoundTripTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.assets = self.tmp / "assets"
+        self.assets.mkdir()
+        (self.assets / "a.jpeg").write_bytes(b"IMG-A")
+        (self.assets / "b.jpeg").write_bytes(b"IMG-B")
+        (self.tmp / "flowers.csv").write_text(
+            "Name,Filename,Flower,Color,Insect,InsectType\n"
+            "n1,a.jpeg,Cosmos,pink,None,\n"
+            "n2,b.jpeg,Peony,red,bee,bumblebee\n"
+        )
+        (self.tmp / "collection.json").write_text(json.dumps({"id": "flowers", "name": "Flowers"}))
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_stage_then_finalize_matches_mint_shape(self):
+        cap = self.tmp / "capsule"
+        partial = self.tmp / "manifest.partial.json"
+        out = self.tmp / "items.json"
+        gm.main([
+            "stage",
+            "--csv", str(self.tmp / "flowers.csv"),
+            "--assets", str(self.assets),
+            "--collection", str(self.tmp / "collection.json"),
+            "--capsule", str(cap),
+            "--partial", str(partial),
+        ])
+        gm.main([
+            "finalize",
+            "--partial", str(partial),
+            "--store-id", "11" * 32,
+            "--root-hash", "22" * 32,
+            "--out", str(out),
+        ])
+        items = json.loads(out.read_text())
+        self.assertEqual(len(items), 2)
+        for it in items:
+            self.assertIn("name", it)
+            self.assertTrue(all(set(a) == {"trait_type", "value"} for a in it["attributes"]))
+            m = it["media"]
+            self.assertTrue(m["data_uris"][0].startswith("dig://"))
+            self.assertRegex(m["data_hash"], r"^[0-9a-f]{64}$")
+            self.assertRegex(m["metadata_hash"], r"^[0-9a-f]{64}$")
+
+
 if __name__ == "__main__":
     unittest.main()

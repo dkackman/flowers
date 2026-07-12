@@ -5,9 +5,8 @@ Every column except --name-col, --file-col, and --skip columns becomes a trait a
 Columns with empty values are omitted from that item's attributes.
 
 Usage:
-    python3 generate_manifest.py
-    python3 generate_manifest.py --csv ./flowers.csv --name-col Flower --file-col Filename
-    python3 generate_manifest.py --csv other.csv --name-col Title --file-col Image --skip ID --out manifest.json
+    python3 generate_manifest.py stage --csv ./flowers.csv --assets ./assets --collection ./collection.json --capsule ./capsule --partial ./manifest.partial.json
+    python3 generate_manifest.py finalize --partial ./manifest.partial.json --store-id <64-hex-id> --root-hash <64-hex-hash> --out ./items.json
 """
 
 import argparse
@@ -200,50 +199,50 @@ def run_finalize(partial_path, store_id, root_hash, out_path) -> int:
     return len(items)
 
 
-def parse_args():
-    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--csv",      default="./flowers.csv",  help="Path to input CSV (default: ./flowers.csv)")
-    p.add_argument("--assets",   default="./assets",       help="Directory prepended to each filename (default: ./assets)")
-    p.add_argument("--out",      default="manifest.json",  help="Output path (default: manifest.json)")
-    p.add_argument("--name-col", default="Flower",         help="Column to use as the NFT name (default: Flower)")
-    p.add_argument("--file-col", default="Filename",       help="Column containing the asset filename (default: Filename)")
-    p.add_argument("--desc",     default="",               help="Fixed description for every item (default: empty)")
-    p.add_argument("--skip",     action="append", default=["Name"], metavar="COL",
-                                                             help="Column to exclude from attributes; repeatable (default: Name)")
-    return p.parse_args()
+def main(argv=None):
+    p = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    sub = p.add_subparsers(dest="command", required=True)
 
+    s = sub.add_parser("stage", help="Build the capsule staging dir + partial manifest (offline)")
+    s.add_argument("--csv", default="./flowers.csv")
+    s.add_argument("--assets", default="./assets")
+    s.add_argument("--collection", default="./collection.json")
+    s.add_argument("--capsule", default="./capsule")
+    s.add_argument("--partial", default="./manifest.partial.json")
+    s.add_argument("--name-col", default="Flower")
+    s.add_argument("--file-col", default="Filename")
+    s.add_argument("--desc", default="")
+    s.add_argument("--skip", action="append", default=["Name"], metavar="COL")
+    s.add_argument("--empty-values", nargs="*", default=[""], metavar="VAL")
 
-def main():
-    args = parse_args()
+    f = sub.add_parser("finalize", help="Write items.json with dig:// URNs (offline)")
+    f.add_argument("--partial", default="./manifest.partial.json")
+    f.add_argument("--store-id", required=True)
+    f.add_argument("--root-hash", required=True)
+    f.add_argument("--out", default="./items.json")
 
-    csv_path = Path(args.csv)
-    if not csv_path.exists():
-        print(f"Error: {csv_path} not found", file=sys.stderr)
-        sys.exit(1)
+    args = p.parse_args(argv)
 
-    assets_dir = Path(args.assets)
-    skip_cols = {args.name_col, args.file_col} | set(args.skip)
-
-    items = []
-    with csv_path.open(newline="") as f:
-        reader = csv.DictReader(f)
-        headers = reader.fieldnames or []
-
-        missing = {args.name_col, args.file_col} - set(headers)
-        if missing:
-            print(f"Error: column(s) not found in CSV: {', '.join(missing)}", file=sys.stderr)
-            print(f"Available columns: {', '.join(headers)}", file=sys.stderr)
-            sys.exit(1)
-
-        for row in reader:
-            asset = assets_dir / row[args.file_col]
-            if not asset.exists():
-                print(f"Warning: asset not found, skipping — {asset}", file=sys.stderr)
-                continue
-            items.append(row_to_item(row, args.name_col, args.file_col, assets_dir, args.desc, skip_cols))
-
-    Path(args.out).write_text(json.dumps(items, indent=2))
-    print(f"Wrote {len(items)} items to {args.out}")
+    if args.command == "stage":
+        skip_cols = {args.name_col, args.file_col} | set(args.skip)
+        count = run_stage(
+            csv_path=args.csv,
+            assets_dir=args.assets,
+            collection_path=args.collection,
+            capsule_dir=args.capsule,
+            partial_path=args.partial,
+            name_col=args.name_col,
+            file_col=args.file_col,
+            description=args.desc,
+            skip_cols=skip_cols,
+            empty_values=set(args.empty_values),
+        )
+        print(f"Staged {count} items → {args.capsule}/ and {args.partial}")
+    elif args.command == "finalize":
+        count = run_finalize(args.partial, args.store_id, args.root_hash, args.out)
+        print(f"Wrote {count} items to {args.out}")
 
 
 if __name__ == "__main__":
