@@ -3,3 +3,12 @@
 .DS_Store
 manifest.json
 collection.json
+
+# generate_manifest.py outputs (regenerated from flowers.csv + assets/)
+capsule/
+manifest.partial.json
+items.json
+
+# python
+__pycache__/
+*.pyc
