@@ -7,7 +7,7 @@ An end-to-end demo of creating a Chia NFT collection on the [DIG Network](https:
 - Setting up and funding a `digstore` wallet
 - Creating a creator DID for NFT attribution
 - Writing CHIP-0007 metadata from a CSV classification dataset
-- Minting a collection whose artwork is packed into a DIG capsule by the mint itself
+- Building the artwork capsule yourself and minting a collection whose NFTs point into it
 - Building and deploying a public drop page on DIG, in its own separate capsule
 
 ## Prerequisites
@@ -15,25 +15,27 @@ An end-to-end demo of creating a Chia NFT collection on the [DIG Network](https:
 - [`digstore` CLI](https://docs.dig.net/docs/digstore/cli/quickstart) installed
 - [A funded Chia wallet](https://xch.network/get-wallet/) with XCH and $DIG tokens (needed for on-chain operations)
 
-> Local operations are free. You spend XCH + $DIG only when anchoring on-chain (`collection mint`, `nft mint`, `did create`, and the drop page's `init` / `commit`).
+> Local operations are free. You spend XCH + $DIG only when anchoring on-chain (`collection mint`, `did create`, and each store's `init` / `commit`).
 
-## Two Capsules, Two Mechanisms
+## Two Capsules, One Mechanism — and What `collection mint` Does NOT Do
 
-This project produces **two separate DIG capsules**, each created a *different* way — don't conflate them:
+This project produces **two separate DIG capsules**, both created the same way — `digstore init` → `add` → `commit`:
 
-1. **Artwork capsule** (Part 1) — created **by `collection mint` itself**. The mint command packs the flower images into a fresh capsule, computes the hashes from the real bytes, and pins the NFTs' media URIs to that capsule's address. **You do not run `digstore init` for the artwork** — mint owns that capsule's whole lifecycle. (In fact `nft mint` refuses to run in a directory that already has an initialized store.)
-2. **Drop page capsule** (Part 2) — a website store you create yourself with `digstore new` → `digstore init` → `add` → `commit`, published under `dig/`. This is the one and only place `digstore init` belongs.
+1. **Artwork capsule** (Part 1) — a store *you* create, containing the flower images plus one CHIP-0007 metadata JSON per item. `collection mint` does **not** create this capsule: it consumes your `manifest.json` verbatim — whatever `data_uris`/`data_hash` values are in it go straight on-chain, unchecked. (Bulk capsule packing is an explicit not-yet-implemented TODO in digstore; only the single-NFT `digstore nft mint --art` path packs a capsule for you.) That's why the manifest must carry real `dig://` URIs and sha256 hashes *before* you mint — and why the workflow below commits the artwork capsule first.
+2. **Drop page capsule** (Part 2) — a website store scaffolded from the `nft-drop` template, published under `dig/`.
 
 ```
-Part 1: collection mint ──► creates the artwork capsule + NFTs (needs DID + collection def + manifest)
-                                     │
-                                     └─ produces the collection ID + asset URNs ──┐
-                                                                                  ▼
+Part 1: build artwork capsule (init → add → commit)  ──► store ID + root hash
+              │                                                  │
+              ▼                                                  ▼
+        manifest.json (real dig:// URIs + hashes)  ──►  collection mint (NFTs point into the capsule)
+                                                                 │
+                                                                 └─ collection ID + asset URNs ──┐
+                                                                                                 ▼
 Part 2: digstore new → init → (configure app.js with those values) → add → commit → push
-        (scaffold + init are independent; configuring app.js needs Part 1's output)
 ```
 
-The drop page store's ID (from its own `digstore init`) is unrelated to the artwork capsule's ID. Never reuse one for the other.
+Each store gets its own ID from its own `digstore init`. Never reuse one for the other.
 
 ---
 
@@ -67,7 +69,7 @@ digstore collection list        # groups by creator DID; shows launcher IDs
 
 Either way, you'll pass the launcher ID to `collection mint` later as `--did <launcher-id>`.
 
-> Wallets like Sage display DIDs as `did:chia:1...` (bech32m). Convert to the 64-hex launcher ID with:
+> Wallets like Sage display DIDs as `did:chia:1...` (bech32m). The Did can be provided either as the 64-hex launcher ID or the bech32m format. To convert to the 64-hex launcher ID with:
 >
 > ```bash
 > python3 did_to_hex.py did:chia:1r00z5mn...
@@ -97,42 +99,71 @@ This writes `collection.json`. Open it and add `description` and `twitter` to th
 
 > The CHIP-0007 spec requires `collection.id` to be a UUID. Verify the generated `collection.json` contains a UUID, not the slug, before minting.
 
-### Step 4 — Build the Items Manifest
+### Step 4 — Generate Metadata and Hashes (manifest pass 1)
 
-Because they are easier to work with than JSON, we keep the NFT metadata in a CSV file. `generate_manifest.py` reads `./flowers.csv` (repo root), prepends `./assets/` to each `Filename`, and writes `manifest.json` — an array of all items in the shape `collection mint` expects.
+Because they are easier to work with than JSON, we keep the NFT metadata in a CSV file. `generate_manifest.py` reads `./flowers.csv` (repo root) and `./collection.json` (from Step 3), then writes:
+
+- `assets/metadata/<image>.json` — one canonical CHIP-0007 metadata document per item (byte-identical to what digstore itself would generate: collection block, `series_number`/`series_total`, `minting_tool: "DIG"`)
+- `manifest.json` — the items array for `collection mint`, with `data_hash`/`metadata_hash` computed by sha256 over the real bytes — but **no URIs yet**, because the `dig://` addresses need the capsule root hash that only exists after Step 5's commit
 
 ```bash
 python3 generate_manifest.py
 ```
 
-Each CSV row becomes one manifest entry. The `Flower` column is used as the NFT `name` (and `Name` is skipped), so they don't appear as traits; every other non-empty column becomes a trait, using the raw CSV column name. Empty cells (e.g. `InsectType` when no insect) are omitted for that item:
+Each CSV row becomes one item. The `Flower` column is the NFT `name` (and `Name` is skipped), so they don't appear as traits; every other non-empty column becomes a trait using the raw CSV column name. Empty cells (e.g. `InsectType` when no insect) are omitted. (Pass `--desc "..."` for a fixed description on every item; by default there is none.)
 
-```json
-[
-  {
-    "name": "Joe Pye Weed",
-    "attributes": [
-      { "trait_type": "Color",      "value": "purple"    },
-      { "trait_type": "Insect",     "value": "bee"       },
-      { "trait_type": "InsectType", "value": "bumblebee" }
-    ],
-    "media": {
-      "data_uris": ["assets/DSC01177.jpeg"]
-    }
-  }
-]
-```
+### Step 5 — Commit the Artwork Capsule
 
-`digstore` handles capsule packing and computing `data_hash` — only the local file path is needed in `data_uris`. (Pass `--desc "..."` to `generate_manifest.py` if you want a fixed description on every item; by default there is none.)
-
-### Step 5 — Mint the Collection
-
-Preview first, then mint. `collection mint` bulk-mints every item in one on-chain bundle, attributed to your DID. **This command creates the artwork capsule itself** — it packs each `assets/*.jpeg`, computes the `data_hash` from the real bytes, and sets every NFT's media URI to that capsule's address. There is no separate `init`/`add`/`commit` for the artwork.
-
-Run it from the repo root so the relative `assets/...` paths in `manifest.json` resolve. Always `--dry-run` first — it prints the resulting `dig://` URNs, computed hashes, and cost without signing or spending.
+Create the asset store with `assets/` as its content root, so URI resource paths are `<image>.jpeg` and `metadata/<image>.jpeg.json`. This is the artwork's own `init`/`add`/`commit` — `collection mint` will not do this for you:
 
 ```bash
-# Preview: prints the dig:// URNs, hashes, and cost (no spend)
+cd assets
+digstore init                           # mints the asset store's singleton (costs DIG + XCH)
+digstore add -A                         # images + metadata/ JSONs, one capsule
+digstore status                         # review what will be committed
+digstore commit -m "flowers artwork"    # anchor the capsule; note store ID + ROOT HASH
+cd ..
+```
+
+Record the **store ID** (from `init`) and the committed generation's **root hash** (from `commit` / `digstore log`). You can sanity-check a resource address with `digstore urn <file>`.
+
+### Step 6 — Finalize the Manifest (pass 2)
+
+Re-run the generator with the values from Step 5. Metadata files are regenerated byte-identically (hashes don't change); the manifest now gets real `dig://<storeId>:<rootHash>/<resource>` URIs in `data_uris`/`metadata_uris`:
+
+```bash
+python3 generate_manifest.py --store-id <64-hex-store-id> --root-hash <64-hex-root-hash>
+# optionally add an https fallback URI on every item:
+#   --gateway https://rpc.dig.net
+```
+
+Each manifest item now looks like:
+
+```json
+{
+  "name": "Joe Pye Weed",
+  "attributes": [
+    { "trait_type": "Color",      "value": "purple"    },
+    { "trait_type": "Insect",     "value": "bee"       },
+    { "trait_type": "InsectType", "value": "bumblebee" }
+  ],
+  "media": {
+    "data_hash":     "4e4e4e5f…0094232",
+    "metadata_hash": "37257d4e…5541edd",
+    "data_uris":     ["dig://<storeId>:<rootHash>/DSC01177.jpeg"],
+    "metadata_uris": ["dig://<storeId>:<rootHash>/metadata/DSC01177.jpeg.json"]
+  }
+}
+```
+
+> `collection mint` copies these `media` values on-chain **verbatim** — it does not read the files, verify the hashes, or rewrite the URIs. A manifest with missing URIs or stale hashes mints broken NFTs without any error. Don't hand-edit this file; regenerate it.
+
+### Step 7 — Mint the Collection
+
+Preview first, then mint. `collection mint` bulk-mints every item, attributed to your DID, auto-splitting large collections into cost-bounded batches (resumable if interrupted). Always `--dry-run` first — it prints the mint plan and cost without signing or spending.
+
+```bash
+# Preview: prints the plan, launcher IDs, and cost (no spend)
 digstore collection mint \
   --collection collection.json \
   --manifest manifest.json \
@@ -146,27 +177,15 @@ digstore collection mint \
   --did <64-hex-launcher-id>
 ```
 
-The `--dry-run` output is where you read off the **collection ID** and the **per-asset URNs** you'll wire into the drop page in Part 2 — capture them now.
-
-For minting a single NFT without a collection (e.g. testing one image first). Note `nft mint` creates its own store, so run it from a directory that does **not** already contain an initialized `.dig` store:
-
-```bash
-digstore nft mint \
-  --art ./assets/IMG_0032.jpeg \
-  --name "Hosta" \
-  --description "Original flower photograph" \
-  --royalty 300 \
-  --did <64-hex-launcher-id> \
-  --dry-run
-```
+For Part 2 you'll need the **collection ID** (the `id` in `collection.json`) and the **per-asset URNs** (the `data_uris` in `manifest.json`) — capture them now.
 
 ---
 
 ## Part 2 — Build the Drop Page
 
-A drop page is a wallet-connected website where people can browse and mint from the collection, published as its **own** DIG capsule — the one place `digstore init` belongs. Scaffolding and `init` (Steps 6–7) don't depend on Part 1 and can be done anytime; configuring `app.js` (Step 8) needs the collection ID and asset URNs from Part 1's mint.
+A drop page is a wallet-connected website where people can browse and mint from the collection, published as its **own** DIG capsule with its own store. Scaffolding and `init` (Steps 8–9) don't depend on Part 1 and can be done anytime; configuring `app.js` (Step 10) needs the collection ID and asset URNs from Part 1.
 
-### Step 6 — Scaffold the Drop Page
+### Step 8 — Scaffold the Drop Page
 
 The `dig/` folder isn't in this repo — scaffold it fresh from the `nft-drop` template:
 
@@ -177,7 +196,7 @@ digstore new nft-drop --dir dig
 
 This is a local, free operation — no wallet or chain interaction. It generates the `dig/` project including `dig.toml` and `app.js`.
 
-### Step 7 — Initialize the Drop Page Store
+### Step 9 — Initialize the Drop Page Store
 
 ```bash
 cd dig
@@ -190,9 +209,9 @@ This returns a 64-hex store ID — the drop page's own, unrelated to any artwork
 store-id = "<your-64-hex-store-id>"
 ```
 
-### Step 8 — Configure the Drop Page
+### Step 10 — Configure the Drop Page
 
-Edit `dig/app.js` to wire up your collection, using the values Part 1's mint produced (read them from its `--dry-run` output or `collection show`):
+Edit `dig/app.js` to wire up your collection, using the values from Part 1 (the collection ID from `collection.json`, the asset URNs from `manifest.json`, or `collection show`):
 
 - Set the collection ID to the `id` from your `collection.json` so the page loads the right NFTs — replace the placeholder `COLLECTION` array with a fetch against that ID instead of hardcoded `Genesis #00N` entries.
 - In the `mintBtn` click handler, replace the `// TODO: build + submit your collection's mint spend here` comment with a `chia.request(...)` (or equivalent CHIP-0035 call) that submits a mint spend for that same collection ID, attributed to your DID launcher ID from Step 2.
@@ -204,7 +223,7 @@ Preview locally for free (no chain, no spend, live reload over the actual `chia:
 digstore dev
 ```
 
-### Step 9 — Publish the Drop Page
+### Step 11 — Publish the Drop Page
 
 ```bash
 digstore add -A                         # stage all drop page files
