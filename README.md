@@ -194,7 +194,7 @@ A drop page is a wallet-connected website where people can browse and mint from 
 The `dig/` folder isn't in this repo — scaffold it fresh from the `nft-drop` template:
 
 ```bash
-digstore new nft-drop --dir dig
+digstore new nft-drop dig
 # or: npm create dig-app@latest dig -- --template nft-drop
 ```
 

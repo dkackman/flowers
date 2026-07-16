@@ -67,7 +67,7 @@ digstore offer make/take/show           # trade NFTs for XCH or CATs
 
 1. Art lives in a DIG capsule **you build yourself** (`init` → `add` → `commit` from `assets/`) containing the images plus per-item CHIP-0007 metadata JSONs — `collection mint` does NOT create it; only single `nft mint --art` self-packs a capsule
 2. `collection mint` copies each manifest item's `media` block (`data_uris`/`data_hash`/`metadata_uris`/`metadata_hash`) on-chain **verbatim, unvalidated** — the manifest must carry real `dig://<storeId>:<rootHash>/<resource>` URIs and sha256 hashes before minting
-3. Two scripts, one per phase: `generate_metadata.py` (before the capsule commit) writes `assets/metadata/*.json`; `generate_manifest.py --store-id --root-hash` (after) hashes the on-disk bytes and writes the mintable `manifest.json` with `dig://` URIs
+3. Two scripts, one per phase: `generate_metadata.py` (before the capsule commit) writes `assets/metadata/*.json`; `generate_manifest.py --store-id --root-hash` (after) hashes the on-disk bytes and writes the mintable `manifest.json` with bare `urn:dig:chia:<storeId>:<rootHash>/<resource>` URIs (no `dig://`/`chia://` scheme prefix)
 4. Metadata follows CHIP-0007 format; the script's output is byte-identical to digstore's own canonical generation (hash-stable)
 5. Never hand-roll coin spends — the CHIP-0035 builders construct every spend; the wallet signs and broadcasts
 6. Use `digstore did create` before minting to attach creator attribution

@@ -3,8 +3,8 @@
 
 Run this AFTER generate_metadata.py and after committing the artwork capsule —
 it needs the asset store's ID and the committed generation's root hash to form
-the dig://<storeId>:<rootHash>/<resource> URIs, and it hashes the image and
-metadata bytes exactly as they sit on disk (i.e. what went into the capsule).
+the urn:dig:chia:<storeId>:<rootHash>/<resource> URIs, and it hashes the image
+and metadata bytes exactly as they sit on disk (i.e. what went into the capsule).
 
 `collection mint` copies each item's media block on-chain verbatim, so this
 manifest is the single source of truth for the NFTs' URIs and hashes.
@@ -48,9 +48,10 @@ def parse_args():
 
 
 def uris(resource: str, args) -> list:
-    out = [f"dig://{args.store_id}:{args.root_hash}/{resource}"]
+    urn = f"urn:dig:chia:{args.store_id}:{args.root_hash}/{resource}"
+    out = [urn]
     if args.gateway:
-        out.append(f"{args.gateway.rstrip('/')}/urn:dig:chia:{args.store_id}:{args.root_hash}/{resource}")
+        out.append(f"{args.gateway.rstrip('/')}/{urn}")
     return out
 
 
