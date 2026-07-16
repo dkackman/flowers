@@ -1,7 +1,4 @@
 .dig/
 .DS_Stores
 .DS_Store
-manifest.json
-collection.json
-assets/metadata/
 __pycache__/

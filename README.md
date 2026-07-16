@@ -189,60 +189,7 @@ For Part 2 you'll need the **collection ID** (the `id` in `collection.json`) and
 
 A drop page is a wallet-connected website where people can browse and mint from the collection, published as its **own** DIG capsule with its own store. Scaffolding and `init` (Steps 8–9) don't depend on Part 1 and can be done anytime; configuring `app.js` (Step 10) needs the collection ID and asset URNs from Part 1.
 
-### Step 8 — Scaffold the Drop Page
-
-The `dig/` folder isn't in this repo — scaffold it fresh from the `nft-drop` template:
-
-```bash
-digstore new nft-drop dig
-# or: npm create dig-app@latest dig -- --template nft-drop
-```
-
-This is a local, free operation — no wallet or chain interaction. It generates the `dig/` project including `dig.toml` and `app.js`.
-
-### Step 9 — Initialize the Drop Page Store
-
-```bash
-cd dig
-digstore init           # mints the drop page's own store singleton (costs DIG + XCH)
-```
-
-This returns a 64-hex store ID — the drop page's own, unrelated to any artwork capsule from Part 1. Add it to `dig/dig.toml`:
-
-```toml
-store-id = "<your-64-hex-store-id>"
-```
-
-### Step 10 — Configure the Drop Page
-
-Edit `dig/app.js` to wire up your collection, using the values from Part 1 (the collection ID from `collection.json`, the asset URNs from `manifest.json`, or `collection show`):
-
-- Set the collection ID to the `id` from your `collection.json` so the page loads the right NFTs — replace the placeholder `COLLECTION` array with a fetch against that ID instead of hardcoded `Genesis #00N` entries.
-- In the `mintBtn` click handler, replace the `// TODO: build + submit your collection's mint spend here` comment with a `chia.request(...)` (or equivalent CHIP-0035 call) that submits a mint spend for that same collection ID, attributed to your DID launcher ID from Step 2.
-- Point each card's `.art` preview at the asset's `dig://`/`urn:dig:chia:...` URI from the mint (the `data_uris` value baked into each NFT), instead of the empty `<div class="art"></div>`.
-
-Preview locally for free (no chain, no spend, live reload over the actual `chia://` read path):
-
-```bash
-digstore dev
-```
-
-### Step 11 — Publish the Drop Page
-
-```bash
-digstore add -A                         # stage all drop page files
-digstore add --discovery                # make the store's contents enumerable by store ID
-digstore status                         # review what will be published
-digstore commit --dry-run               # preview cost
-digstore commit -m "initial drop page"  # anchor capsule on-chain
-digstore push origin                    # push to DIGHub
-```
-
-After pushing, your drop page is live at:
-
-```
-chia://<storeId>
-```
+### TBD
 
 ---
 

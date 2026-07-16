@@ -1,0 +1,578 @@
+[
+  {
+    "name": "New England Aster",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "purple"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "bee"
+      },
+      {
+        "trait_type": "InsectType",
+        "value": "bumblebee"
+      }
+    ],
+    "media": {
+      "data_hash": "4e4e4e5fe8e8c7acab8e3cfe98610e05194de6ebc1a320bd2c8e5ff660094232",
+      "metadata_hash": "a28fc5f03f74e0f698e9153a062cd314f558f0324cd85f93333813bdc398de1b",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_0033.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_0033.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Crocus",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "purple"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "55b6975df7b38748ce460fcdad2ea175f7b2d8e0fe0050e207142207102ee081",
+      "metadata_hash": "ebb3ebed57eeae09cb15e3dbdf303bf8cddf5e2c6e0b87fb95930aeaf939d93d",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_4712.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_4712.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Blanket Flower",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "yellow"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "5fe7b784acf2358705ab20d565b172f91d1cc3146760c679cb1159aa85952fb7",
+      "metadata_hash": "3c76f0a2687083be3e07e80cd7270e893757b37063423abc099f0ff306dc890e",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_6019.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_6019.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Peony",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "674ca4294fcc9f55379ff2303dfb325356a504466e58c0a32ed0b3795951c27f",
+      "metadata_hash": "aa446c3134eca2b4554724f2f0b3023e5cc0fc1cbf093a94a94baab286f378a3",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_6733.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_6733.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Oriental Poppy",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "ed09a21a051378e8170351a4291a93460b8dd0feba32adb6f54c24958ba408a6",
+      "metadata_hash": "593ce3f5e406051a8cbf465f41b81a6a848c6f922cf7a78ecd52130b0c3ad926",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_6739.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_6739.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Hosta",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "lavender"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "3310512dc1c5646b7ae048427f1ae89f0a350cecfb1c1ad6a226880ba47ef49f",
+      "metadata_hash": "1aea7e036cf3e27cc65e2470f2afdcbb1b5a35e1a26f7a111e37cc695ff5abe8",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_6861.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_6861.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Purple Coneflower",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "butterfly"
+      },
+      {
+        "trait_type": "InsectType",
+        "value": "monarch"
+      }
+    ],
+    "media": {
+      "data_hash": "f7a0718c493986b9440b85a2bbe5b7633d769d4f26c52e42ae2367d597757e37",
+      "metadata_hash": "f048aa0897883d93cf772d3f500be58ab2e69a21b808521ae90bfd2ccff72d57",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7188-1.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7188-1.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Cosmos",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "white"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "bee"
+      }
+    ],
+    "media": {
+      "data_hash": "b83339775aad926557571e97f55a0231ea2382f45ec1d61dda41d526bd4000ba",
+      "metadata_hash": "cebf8938b7d261f1edbc52bb47d3df20d16fa5554f74d6a4953f21f81e14e245",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7209.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7209.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Russian Sage",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "purple"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "326913ac6000732e97581b1b5398f35bcfbd5ec83b8ec2935a94476b49fc1eb2",
+      "metadata_hash": "dd58c7d8a1b1860dc8e624a8a0f9ee1c67b5b471d8db1dc403c7ba5b3fd08d5d",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7210-1.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7210-1.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Zinnia",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "orange"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "88bbff1879489cf49d1c227f21ab27ef0eebaf3776fe446761dda7ab77857031",
+      "metadata_hash": "4bfe1935a5f965f7c72a280bd871cb985429dba03ff76b0a621c21b23372175a",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7360.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7360.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Cosmos",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "white"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "bee"
+      },
+      {
+        "trait_type": "InsectType",
+        "value": "bumblebee"
+      }
+    ],
+    "media": {
+      "data_hash": "f5a9b73b62ca4fd3eeaa92710a2c6086f4bc940309fa3ef0f49b16e30595bf5b",
+      "metadata_hash": "f3577594866d9d9d6fbd6dbeecfb8cf4a0f52cc17158a7a331922e3d89908563",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7431-1.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7431-1.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Cosmos",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "butterfly"
+      },
+      {
+        "trait_type": "InsectType",
+        "value": "monarch"
+      }
+    ],
+    "media": {
+      "data_hash": "29bf83a3ce8edec312a45e09f340e52e53d3134a4a1162664b099b58528e139f",
+      "metadata_hash": "dbed037c9f253e204c17bcb29f91369fb851c1f1ac70ea18cb4aba3847994d7f",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7436.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7436.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Maiden Grass",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "white"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "ef8ee9aab01ab128161ca2d9449100b80b72e009313d1637e1608080bfddc6b4",
+      "metadata_hash": "395dd113480083be596514b3387be6f3915b3d709d087aac592ef19228ccfb0b",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7513.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7513.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Crabapple",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "white"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "f129fa1ac8663c41fd91b55ed84d79eb30280b8cfa20e3b38d274fedfe7b98ff",
+      "metadata_hash": "bb1c7d30da9fd3a48016f82c73e87fed26707e3778623607412b4c7a3eb1fa50",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7801.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7801.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Camassia",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "blue"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "e86db8063595b5558abda4518bfd9ab796ca2c391d6f6b891b98214a82429504",
+      "metadata_hash": "5cea574f8396a764884aaad6a884392c2a51395acfb24c64dc9090c71b8a9297",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7804.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7804.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Allium",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "purple"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "1a3b5c2337b36450cd8abfc20fef35233a8b49bb7e459ea9d2d0efe48dcc2d1d",
+      "metadata_hash": "5d8434c57f40e00e8b4a0ab6f98ed3eecbaa2a4c67edf5ef1776a383c3e21a80",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7819.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7819.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Columbine",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "be604366526bf94553a7089d119ffdc3d45772dd4cbb080af9bb26644c0c88e9",
+      "metadata_hash": "d2b610417cd80119aa360d55e485d5e61da68f3a4462a9c126f9b9e0a1d56354",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7839.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7839.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Foxglove",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "purple"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "669c2a70aed3a19973ca45b7b11780bbb0fd099ef16578ef623d4dc979f73fdf",
+      "metadata_hash": "3a590e3f2b23c5c7ed758c56eb4b4295a972078862deee82dd2de77b4981a2ed",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7900.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7900.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Peony",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "b41168b407d6071337dcb1ef30e532ba9eef2d6c980aa136ce54ba5b6daf4e8c",
+      "metadata_hash": "d4d75e993b92c960847989a43d9d55d5b9420677ddcb6434c201e81677475e91",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7907.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7907.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Poppy",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "red"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "248c90be54160d4762281be50f0ca4d34582b81681bde42fb37a7426a1b45e09",
+      "metadata_hash": "e1e71808f5a6797274693465594c841a83f5b19f6bf7da964580f86a19430cf4",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_7940.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_7940.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Coneflower",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "yellow"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "bee"
+      },
+      {
+        "trait_type": "InsectType",
+        "value": "bumblebee"
+      }
+    ],
+    "media": {
+      "data_hash": "2cfde56901b0d64f5de6cb5b90309210d59e944d2fd0db00a7ab354ecc532a4e",
+      "metadata_hash": "5ce2180c68c07da43e73518c23846f19dc0110a0ce6e13e56566f441f1cdfac8",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_8127.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_8127.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Sundrops",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "yellow"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "bee"
+      },
+      {
+        "trait_type": "InsectType",
+        "value": "sweat bee"
+      }
+    ],
+    "media": {
+      "data_hash": "01099607c198ff296a1790d8504df25108bb69e296b327d99213b5488d75a7d3",
+      "metadata_hash": "ff8501ba3aeffda1bfea55759cf26599721313cbcf4eed6f64687c5a496a338d",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/IMG_9929-1.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/IMG_9929-1.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Dahlia",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "717a2121d0b6dd6b6ed8a3caae601a30c7f4c812c5eb698bff12fba0c0cba379",
+      "metadata_hash": "86143abc039c9f1494bfaa01112da3dcdb7d6d12e23713d62a37b0b973468e79",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/WP_20150911_17_40_47_Pro.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/WP_20150911_17_40_47_Pro.jpeg.json"
+      ]
+    }
+  },
+  {
+    "name": "Swamp Milkweed",
+    "attributes": [
+      {
+        "trait_type": "Color",
+        "value": "pink"
+      },
+      {
+        "trait_type": "Insect",
+        "value": "None"
+      }
+    ],
+    "media": {
+      "data_hash": "c8e46a2ddc9754e1312afcfdb53338bd45c46f78c427a012c5c8fbaac580469f",
+      "metadata_hash": "b22be608b904be8063a0306cdbf2af6d98709a876fe2ce5b5b8526f75be9c5e0",
+      "data_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/WP_20160723_09_41_46_Pro.jpeg"
+      ],
+      "metadata_uris": [
+        "urn:dig:chia:7a24f587e2baaf7871708db6e34a02c7f697ac6ecc630a6f897c958d58b5c451:d6e162a2d3bb1940e550f2a340ce3091c695720b180df32d326bbed3c76452e3/metadata/WP_20160723_09_41_46_Pro.jpeg.json"
+      ]
+    }
+  }
+]

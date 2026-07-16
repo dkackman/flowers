@@ -1,0 +1,16 @@
+{
+  "id": "fd9203a3-f799-4ba5-8a31-84dc1f2784d9",
+  "name": "Dig Flowers",
+  "attributes": [
+    {
+      "type": "description",
+      "value": "Original flower photography minted on the DIG Network"
+    },
+    {
+      "type": "twitter",
+      "value": "@dkackman"
+    }
+  ],
+  "royalty_puzzle_hash": "0x827ecf1c207d66e41e0a10679f154837aa51905821eaaeecf1627607291b5556",
+  "royalty_basis_points": 300
+}
